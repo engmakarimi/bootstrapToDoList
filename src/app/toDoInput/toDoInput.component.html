@@ -1,0 +1,183 @@
+<div class="row" id="formlist">
+  <div class="col-12">
+    <div class="card p-3">
+      <div class="card-body mt-1 ">
+        <form [formGroup]="toDoForm" (ngSubmit)="toDoFormSubmit()" novalidate>
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-9">
+              <label class="text-muted lable" for="toDOText">
+                کاری رو که میخوای انجام بدی رو اینجا وارد کن
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="toDOText"
+              />
+              <span
+                class="invalid-input"
+                *ngIf="
+                  toDoForm.controls.toDOText.touched &&
+                  toDoForm.controls.toDOText.invalid &&
+                  toDoForm.controls.toDOText.errors.required
+                "
+              >
+                یه کار رو بنویس حداقل !!!</span
+              >
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-sm-6 col-md-4">
+              <label class="text-muted lable" for="priorityName"
+                >چقدر برات مهمه</label
+              >
+              <input
+                class="form-control"
+                formControlName="priorityName"
+                [ngbTypeahead]="searchPriority"
+                [inputFormatter]="formatter"
+                [resultFormatter]="formatter"
+                [editable]="false"
+                (focus)="priorityfocus$.next($any($event).target.value)"
+                [value]="priorityDisplayName"
+                (click)="priorityclick$.next($any($event).target.value)"
+                #prioritycontrol="ngbTypeahead"
+                #priority
+              />
+              <span
+                class="invalid-input"
+                *ngIf="
+                  toDoForm.controls.priorityName.touched &&
+                  toDoForm.controls.priorityName.invalid &&
+                  toDoForm.controls.priorityName.errors.required
+                "
+                >انتخاب کن چقدر برات مهمه
+              <span>!!!</span></span>
+            </div>
+            <div class="col-sm-6 col-md-5">
+              <label class="text-muted lable" for="statusName"
+                >الان کار در چه وضعیتی هست</label
+              >
+              <input
+                class="form-control"
+                formControlName="statusName"
+                [ngbTypeahead]="searchStatus"
+                [inputFormatter]="formatter"
+                [resultFormatter]="formatter"
+                [editable]="false"
+                (focus)="statusfocus$.next($any($event).target.value)"
+                [value]="statusDisplayName"
+                (click)="statusclick$.next($any($event).target.value)"
+                #statuscontrol="ngbTypeahead"
+                #priority
+              />
+              <span
+                class="invalid-input"
+                *ngIf="
+                  toDoForm.controls.statusName.touched &&
+                  toDoForm.controls.statusName.invalid &&
+                  toDoForm.controls.statusName.errors.required " >
+                  انتخاب کن این کار الان در چه وضعیتی هست<span>!!!</span></span >
+            
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div>
+              <p class="text-muted lable mt-2">برای انجام این کار</p>
+            </div>
+            <div class="col-2">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="hourTime"
+              />
+            </div>
+            <div><p class="text-muted lable mt-2">ساعت و</p></div>
+            <div class="col-2">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="mintime"
+              />
+            </div>
+            <div><p class="text-muted lable mt-2">دقیقه نیاز دارم</p></div>
+
+            <span
+              class="invalid-input col-12"
+              *ngIf="
+                toDoForm.controls.mintime.touched &&
+                toDoForm.controls.mintime.invalid
+              "
+            >
+              <span *ngIf="toDoForm.controls.mintime.errors.required">
+               لطفا دقیقه رو هم بنویس، صفر هم مجازه <span>!!!</span></span>
+           
+              <span *ngIf="toDoForm.controls.mintime.errors.greaterthanzero">
+                دقیقه رو منفی وارد کردی<span>!!!</span></span>
+
+            </span>
+            <span
+              class="invalid-input col-12"
+              *ngIf="
+                toDoForm.controls.hourTime.touched &&
+                toDoForm.controls.hourTime.invalid ">
+             
+            
+              <span *ngIf="toDoForm.controls.hourTime.errors.required">
+                لطفا ساعت رو هم بنویس، صفر هم مجازه  <span>!!!</span></span>
+              
+            
+              <span *ngIf="toDoForm.controls.hourTime.errors.greaterthanzero">
+                ساعت رو منفی وارد کردی <span>!!!</span></span>
+              
+             
+            </span>
+          </div>
+          <div class="row  my-3" *ngIf="showError">
+            <div class="col-6">
+              <div class="invalid-input" *ngIf="toDoForm.controls.toDOText.errors.required  
+              && toDoForm.controls.toDOText.untouched  && toDoForm.controls.toDOText.invalid">
+              کاری رو که میخوای انجام بدی رو  وارد کن
+            </div>
+            <div class="invalid-input" *ngIf="toDoForm.controls.priorityName.errors.required  
+            && toDoForm.controls.priorityName.untouched  && toDoForm.controls.priorityName.invalid">
+            انتخاب کن چقدر برات مهمه
+          </div>
+          <div class="invalid-input" *ngIf="toDoForm.controls.statusName.errors.required  
+          && toDoForm.controls.statusName.untouched  && toDoForm.controls.statusName.invalid">
+          انتخاب کن این کار الان در چه وضعیتی هست
+        </div>
+        <div class="invalid-input" *ngIf="toDoForm.controls.hourTime.errors.required  
+        && toDoForm.controls.hourTime.untouched  && toDoForm.controls.hourTime.invalid">
+        لطفا ساعت رو هم بنویس، صفر هم مجازه </div>
+           
+            <div class="invalid-input" *ngIf="toDoForm.controls.mintime.errors.required  
+            && toDoForm.controls.mintime.untouched  && toDoForm.controls.mintime.invalid">
+            لطفا دقیقه رو هم بنویس، صفر هم مجازه </div>
+          
+            </div>
+          </div>
+          <div
+            class="row d-flex justify-content-end flex-md-row flex-sm-column">
+          
+            <div class="col-sm-12 col-md-3 m-1">
+              <button class="btn btn-danger btn-block" type="submit">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;
+                {{ editing ? "ویرایش" : "اضافه به لیست" }}
+              </button>
+            </div>
+            <div class="col-sm-12 col-md-3 m-1">
+              <button
+                class="btn btn-secondary btn-block"
+                type="button"
+                (click)="cancel()"
+              >
+                بازگشت &nbsp;
+                <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

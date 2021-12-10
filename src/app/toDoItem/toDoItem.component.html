@@ -1,0 +1,51 @@
+<ng-template #content let-modal >
+ 
+  <div class="modal-body bg-warning">
+    <p>مطمئنی که این کار نمیخوای انجام بدی؟؟</p>
+  </div>
+  <div class="modal-footer d-flex justify-content-center">
+    <button type="button" class="btn btn-warning" (click)="deleteItem()">اره مطمئنم</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()"> نه منصرف شدم</button>
+
+  </div>
+</ng-template>
+
+
+<div class="row d-flex flex-row card p-1 mt-1 bg-light">
+  <div class="col-md-1 align-items-center d-flex" >
+    <i *ngIf="toDoItem.statusName.id == 1" class="fa fa-spinner fa-pulse fa-2x fa-fw text-warning"></i>
+    <i *ngIf="toDoItem.statusName.id == 2" class="fa fa-check-circle-o fa-2x text-secondary text-success" aria-hidden="true"></i>
+    <i *ngIf="toDoItem.statusName.id == 0" class="fa fa-pause-circle-o fa-2x text-danger" aria-hidden="true"></i>
+  </div>
+   <div class="text-section col-md-4 col-sm-12">
+    <p class="text-info">{{toDoItem.toDOText}}</p>
+    <small class="text-muted">{{toDoItem.hourTime + "ساعت و " + toDoItem.mintime + " دقیقه برای انجام این کار نیاز دارم"}} </small>
+   </div>
+   <div class="status-section col-md-5 col-sm-12 align-items-center d-flex flex-md-row justify-content-around" >
+     <span class="badge"
+      [ngClass]="{'status-2':toDoItem.statusName.id === 2,'status-1':toDoItem.statusName.id === 1,'status-0':toDoItem.statusName.id === 0}"
+       
+      >{{toDoItem.statusName.value}}</span>
+     <span class="badge" [ngClass]="{'priority-2':toDoItem.priorityName.id === 2,'priority-1':toDoItem.priorityName.id === 1,'priority-0':toDoItem.priorityName.id === 0}"
+     >{{toDoItem.priorityName.value}}</span>
+   </div>
+   <div class="button-section col-md-2 col-sm-12 align-items-center justify-content-center d-flex flex-sm-row flex-md-column">
+     <button class="btn btn-success m-1" (click)="editItem(toDoItem.temptId)"><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+     <button class="btn btn-warning m-1" (click)="open(content,toDoItem.temptId)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+   </div>
+</div>
+<!-- deleteItem(toDoItem.temptId) -->
+<!-- <td >
+ {{toDoItem.toDOText}}
+  
+</td>
+<td>
+  {{toDoItem.priorityName.value}}
+</td>
+<td>
+  {{toDoItem.statusName.value}} 
+</td>
+<td>
+  <button class="btn btn-success m-1" (click)="editItem(toDoItem.temptId)"><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+ <button class="btn btn-warning m-1" (click)="deleteItem(toDoItem.temptId)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+</td> -->

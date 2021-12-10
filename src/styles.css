@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+body,p , small, label,span,i, button ,div ,input,.dropdown-item,h4{
+
+    font-family: yekan;
+     direction: rtl;
+     text-align: right ;
+ 
+}
+/* P , small, label,span,i, button ,div ,input,.dropdown-item{
+  
+   direction: rtl;
+  text-align: right ;
+}
+div{
+    direction: rtl;
+} */

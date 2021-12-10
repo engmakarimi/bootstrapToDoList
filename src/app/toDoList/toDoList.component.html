@@ -1,0 +1,52 @@
+<div class="mt-5">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <div class="m-2 alert alert-light text-primary">
+        <i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;
+        <span> {{titel}}</span><span>:</span>
+      </div>
+    </div>
+      <div class="col-md-6 col-sm-12 text-left">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-block btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>فیلتر کردن</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="allWork()">لیست همه کارها</button>
+            <button ngbDropdownItem (click)="toDoWork()">کارهای تمام شده</button>
+            <button ngbDropdownItem (click)="notToDoWork()">کارهای ناتمام</button>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+  <div>
+    <div class="text-success" *ngIf="toDoList.length == 0">
+      <p>کاری در فهرست نیست </p>
+    </div>
+    <div *ngIf="toDoList.length != 0">
+      
+      <ul>
+        <li *ngFor="let item of toDoList; let i = index">
+          <app-toDoItem [toDoItem]="item"></app-toDoItem>
+        </li>
+      </ul>
+
+      <!-- <table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>کاری که قراره انجام بدی</th>
+        <th>اولویت</th>
+        <th>وضعیت</th>
+        <th>عملیات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of toDoList;let i=index">
+        <th scope="row">{{i+1}}</th>
+        <app-toDoItem [toDoItem]="item"></app-toDoItem>
+      </tr>
+    </tbody>
+  </table> -->
+    </div>
+  </div>
+</div>

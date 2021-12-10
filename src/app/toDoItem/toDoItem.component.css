@@ -1,0 +1,29 @@
+.list-item{
+ border: 2px solid rgb(243, 214, 159);
+}
+.card{
+    margin-right: 0px;
+}
+.badge{
+    font-size: 0.85rem;
+    height: 35px;
+}
+.status-0{
+    background-color: #f3c4fb;
+}
+.status-1{
+    background-color: #be83ee;
+}
+.status-2{
+    background-color: #8107a7;
+}
+
+.priority-0{
+    background-color: #fff75e;
+}
+.priority-1{
+    background-color: #fdc43f;
+}
+.priority-2{
+    background-color: #f26419;
+}

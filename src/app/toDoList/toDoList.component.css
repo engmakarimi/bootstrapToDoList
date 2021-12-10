@@ -1,0 +1,8 @@
+li{
+    list-style: none;
+}
+ul{
+    /* margin-right: 0px;
+    margin-block-start: 0px; */
+    padding-inline-start: 0px;
+}
